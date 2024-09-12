@@ -1,7 +1,9 @@
 package main
 
-import "learn-go/learn-go/util"
+import (
+	"fmt"
+)
 
 func main() {
-	util.PrintMessage("Start learing GO")
+	fmt.Println("Hello World")
 }

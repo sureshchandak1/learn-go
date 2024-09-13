@@ -31,4 +31,14 @@ func main() {
 		fmt.Println("Key:", key, "Value:", value)
 	}
 
+	// Create map
+	person := map[string]int{
+		"Person1": 100,
+		"Person2": 50,
+	}
+
+	for key, value := range person {
+		fmt.Println("Key:", key, "Value:", value)
+	}
+
 }

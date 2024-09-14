@@ -17,6 +17,8 @@ func main() {
 
 	performUpdateRequest()
 
+	performDeleteRequest()
+
 }
 
 func performGetRequest() {
@@ -134,6 +136,36 @@ func performUpdateRequest() {
 	fmt.Print("Response:\n", string(data))
 	fmt.Println()
 
+}
+
+func performDeleteRequest() {
+
+	jsonReader := strings.NewReader("")
+	const myUrl = "https://jsonplaceholder.typicode.com/todos/1"
+
+	// Create DELETE request
+	req, err := http.NewRequest(http.MethodDelete, myUrl, jsonReader)
+	if err != nil {
+		fmt.Println("Error creating DELETE request:", err)
+		return
+	}
+
+	defer req.Body.Close()
+
+	// Send the request
+	client := http.Client{}
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error sending request:", err)
+		return
+	}
+
+	defer res.Body.Close()
+
+	fmt.Println("Response status:", res.Status)
+	data, _ := io.ReadAll(res.Body)
+	fmt.Print("Response:\n", string(data))
+	fmt.Println()
 }
 
 type Todo struct {

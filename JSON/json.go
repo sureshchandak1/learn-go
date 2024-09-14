@@ -47,6 +47,7 @@ func main() {
 	json.Unmarshal(data, &todo)
 
 	fmt.Print(todo)
+
 }
 
 type Person struct {

@@ -15,6 +15,8 @@ func main() {
 
 	performPostRequest()
 
+	performUpdateRequest()
+
 }
 
 func performGetRequest() {
@@ -84,6 +86,54 @@ func performPostRequest() {
 	fmt.Println("Response status:", res.Status)
 	data, _ := io.ReadAll(res.Body)
 	fmt.Print("Response:\n", string(data))
+	fmt.Println()
+}
+
+func performUpdateRequest() {
+	todo := Todo{
+		UserId:    235345,
+		Title:     "Rakesh Kumar & Mohanlal",
+		Completed: false,
+	}
+
+	// Convert the todo struct to JSON
+	jsonData, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error marshalling:", err)
+		return
+	}
+
+	jsonString := string(jsonData) // Convert json data to string
+
+	jsonReader := strings.NewReader(jsonString) // Convert string data to reader
+
+	const myUrl = "https://jsonplaceholder.typicode.com/todos/1"
+
+	// Create PUT request
+	req, err := http.NewRequest(http.MethodPut, myUrl, jsonReader)
+	if err != nil {
+		fmt.Println("Error creating PUT request:", err)
+		return
+	}
+	req.Header.Set("Content-type", "application/json")
+
+	defer req.Body.Close()
+
+	// Send the request
+	client := http.Client{}
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error sending request:", err)
+		return
+	}
+
+	defer res.Body.Close()
+
+	fmt.Println("Response status:", res.Status)
+	data, _ := io.ReadAll(res.Body)
+	fmt.Print("Response:\n", string(data))
+	fmt.Println()
+
 }
 
 type Todo struct {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 )
@@ -23,5 +24,24 @@ func main() {
 	str2 := "Ram"
 	result := strings.Join([]string{str1, str2}, " ")
 	fmt.Println("Join strings:", result)
+
+	s := "12121211122"
+	removeLast := s[0 : len(s)-1]
+	first3 := s[0:3]
+	last3 := s[len(s)-3:]
+	last1 := s[len(s)-1:]
+
+	fmt.Println(s)
+	fmt.Println("Remove Last:", removeLast)
+	fmt.Println("First 3:", first3)
+	fmt.Println("Last 3:", last3)
+	fmt.Println("Last 1:", last1)
+
+	fmt.Printf("Last 1 type: %T\n", last1)
+
+	var buffer bytes.Buffer
+	buffer.WriteString("a")
+	buffer.WriteByte(3)
+	fmt.Println("Buffer string:", buffer.String())
 
 }

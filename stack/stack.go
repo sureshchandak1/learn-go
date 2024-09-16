@@ -22,4 +22,20 @@ func main() {
 		stack.Remove(back)
 	}
 
+	stack = list.New()
+
+	stack.PushBack("a")
+	stack.PushBack("b")
+	stack.PushBack("c")
+	stack.PushBack("d")
+
+	for stack.Len() != 0 {
+
+		back := stack.Back()
+
+		fmt.Println(back.Value)
+
+		stack.Remove(back)
+	}
+
 }

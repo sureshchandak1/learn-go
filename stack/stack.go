@@ -8,6 +8,7 @@ import (
 func main() {
 
 	stack := list.New()
+	fmt.Printf("Stack type: %T\n", stack)
 
 	for i := 1; i <= 10; i++ {
 		stack.PushBack(i)
